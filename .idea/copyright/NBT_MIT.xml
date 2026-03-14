@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="#set(&amp;#36;origYear = &amp;#36;originalComment.match(&quot;Copyright \\(c\\) (\\d{4})&quot;, 1, &quot;&quot;))&#10;Copyright (c) #if(&amp;#36;origYear &amp;amp;&amp;amp; &amp;#36;origYear != &quot;&quot;)&amp;#36;{origYear}-&amp;#36;{today.year}#else&amp;#36;{today.year}#end devjakob&#10;https://github.com/PixelClient/nbt&#10;&#10;Licensed under the MIT License. See LICENSE file for details." />
+    <option name="myName" value="NBT-MIT" />
+  </copyright>
+</component>
