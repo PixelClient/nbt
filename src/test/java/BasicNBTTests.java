@@ -21,13 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BasicNBTTests {
 
-    private static byte[] gzipSampleData;
-    private static byte[] sampleData;
-
     @BeforeAll
     static void prepareTests() throws IOException {
-        gzipSampleData = BasicNBTTests.class.getResourceAsStream("/samplegzip.nbt").readAllBytes();
-        sampleData = BasicNBTTests.class.getResourceAsStream("/sample.nbt").readAllBytes();
         NBT.INSTANCE.setAssumeCompressed(false);
     }
 
@@ -138,12 +133,12 @@ public class BasicNBTTests {
         NBT nbt = new NBT();
         nbt.setAssumeCompressed(true);
         nbt.setCompression(new JVMCompressionProvider());
-        commonSample(nbt.readNBT(gzipSampleData));
+        commonSample(nbt.readNBT(BasicNBTTests.class.getResourceAsStream("/samplegzip.nbt")));
     }
 
     @Test
     void testSample() throws IOException {
-        commonSample(NBT.INSTANCE.readNBT(sampleData));
+        commonSample(NBT.INSTANCE.readNBT(BasicNBTTests.class.getResourceAsStream("/sample.nbt")));
     }
 
     void commonSample(TagRoot root) {
