@@ -31,6 +31,7 @@ jobs:
         if: success() || failure()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
+          include_passed: true
 
       - uses: actions/upload-artifact@v6
         with:
