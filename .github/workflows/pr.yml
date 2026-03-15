@@ -1,11 +1,10 @@
 name: ci
 
-on: [push]
+on: [pull_request]
 
 permissions:
   contents: read
   checks: write
-  packages: write
 
 jobs:
   build:
@@ -38,14 +37,3 @@ jobs:
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
           include_passed: true
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v6
-        with:
-          path: build/libs/*.jar
-
-      - name: Publish project
-        run: ./gradlew publish
-        env:
-          MAVEN_USER: ${{ secrets.GITHUB_ACTOR }}
-          MAVEN_TOKEN: ${{ secrets.GITHUB_TOKEN }}

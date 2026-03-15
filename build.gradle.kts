@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("maven-publish")
 }
 
 group = "me.devjakob.pixelclient"
@@ -26,4 +27,24 @@ tasks.test {
 
 tasks.withType<JavaCompile>().configureEach {
     options.release.set(8)
+}
+
+publishing  {
+    repositories {
+        maven {
+            name = "github-packages"
+            url = uri("https://maven.pkg.github.com/PixelClient/nbt")
+            credentials {
+                username = System.getenv("MAVEN_USER")
+                password = System.getenv("MAVEN_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("ghPackages") {
+            version = project.version.toString()
+            from(components["java"])
+        }
+    }
 }
